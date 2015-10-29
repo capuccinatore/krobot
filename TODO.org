@@ -1,3 +1,8 @@
-* manager 
-** TODO implement
+# data
+ TODO parser html avec bonne librairie 
 
+# communication
+ TODO implement class Communication
+
+# solver
+TODO implement class
