@@ -1,4 +1,4 @@
-import urllib2
+import urllib.request
 import re
 
 class RU():
@@ -12,5 +12,8 @@ class RU():
         self.url = url
 
     def fetchInformation(self):
-        
+        with urllib.request.urlopen(self.url) as response:
+            html = response.read()
+            #index = html.find("menu_ru_plat>")
+            print("menu" in html)
 
