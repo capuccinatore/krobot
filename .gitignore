@@ -60,3 +60,5 @@ docs/_build/
 # PyBuilder
 target/
 
+# Clément's draft
+*draft.py
