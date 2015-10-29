@@ -10,10 +10,15 @@ class RU():
         super(RU, self).__init__()
         self.name = name
         self.url = url
+        self.boolOpen = 0
+        self.menu = []
 
     def fetchInformation(self):
         with urllib.request.urlopen(self.url) as response:
-            html = response.read()
-            #index = html.find("menu_ru_plat>")
-            print("menu" in html)
+            self.html = response.read().decode("iso-8859-1")
+            marker = "menu_ru_plat\">"
+            indexStart = self.html.find(marker)
+            indexEnd = self.html.find("<", indexStart)
+            self.menu.append(self.html[indexStart+len(marker):indexEnd])
+
 
