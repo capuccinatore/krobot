@@ -15,7 +15,7 @@ class DataBase(object):
 		pass
 
 	def removeAll(self):
-		pass
+		del self.constraint[:]
+		del self.listRu[:]
 
-
-		
+	
