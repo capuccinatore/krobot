@@ -12,4 +12,5 @@ def test_Communication():
     ruList = []
     personList = []
     comm = communication.Communication(personList, ruList)
+    comm.startBot()
     comm.printMenus()

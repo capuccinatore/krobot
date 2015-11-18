@@ -4,7 +4,7 @@ import os
 sys.path.insert(0, os.path.dirname(__file__)+"/..")
 import data
 import datetime
-import mock
+#import mock
 import time
 
 #def test_RU():

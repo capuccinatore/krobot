@@ -5,7 +5,7 @@ class Communication(object):
     """
     communication class to chat with actual people. Right now, we use IRC.
     """
-    def __init__(self, personList, ruList, channel="#CRIStALSigmaLunch", port="6667", nickname="krobot", server="irc.foonetic.net", medium="IRC"):
+    def __init__(self, personList, ruList, channel="#CRIStALSigmaLunch", port=6667, nickname="krobot", server="irc.foonetic.net", medium="IRC"):
         super(Communication, self).__init__()
         self.medium = medium
         self.ruList = ruList
@@ -13,11 +13,17 @@ class Communication(object):
         if medium == "IRC":
             self.bot = IRCKrobot(channel, nickname, server, port, personList, ruList)
 
+    def startBot(self):
+        self.bot.start()
+
+    def stopBot(self):
+        self.bot.stop()
+
     def checkWhoIsOnline():
         """
         make a list of persons online and store it in personList
         """
-        return 0 # not implemented yet
+        return 0 # not implemented yet, maybe not necessary
 
     def printMenus(self):
         """
