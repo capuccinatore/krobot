@@ -5,9 +5,20 @@ import locale
 import time
 from bs4 import BeautifulSoup
 
+class Person(object):
+    """
+    gather daily prefences and constraints from a team member
+    """
+
+    def __init__(self, name):
+        super(Person, self).__init__()
+        self.name = name
+        self.preferredRu = []
+        self.timeSlot = [] # a list of 2 ints within which the person wants to eat, e.g. [1230,1345]
+
 class RU(object):
 	"""
-	gather daily info on an given restaurant
+	fetch and gather daily info on an given restaurant
 	"""
 
 	def __init__(self, name, url):
