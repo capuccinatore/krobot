@@ -2,7 +2,7 @@ import sys
 import urllib2
 import datetime
 import locale
-
+import time
 from bs4 import BeautifulSoup
 
 class RU(object):
@@ -39,7 +39,9 @@ class RU(object):
 			date = day.font.i.b.string
 			list_info = date.split(" ")
 			under_study_day = int(list_info[1])
-			targetting_string = day
+			if under_study_day == current_day:
+				targetting_string = day
+				break
 
 		if targetting_string == "-1":
 			raise Exception("Week in " + self.name + "does not match with the current week. :(")
@@ -48,11 +50,14 @@ class RU(object):
 		a = targetting_string.find_all("font", {"class":"menu_ru_plat"})
 
 		self.menu = map(lambda item: unicode(item.string).encode('utf-8'), day.find_all("font", {"class":"menu_ru_plat"}))
-		print self.menu[1]
+		print self.menu
 		
 
 if __name__ == '__main__':
 
-    ru = RU("Barrois" ,"http://www.crous-lille.fr/admin-site/restauration_menu_print_w.php?ru=26&midi=1&soir=1&nb_w=2")
-    ru.fetchInfo()
+	def mytime(): return 1447000000#1447400000.0
+	time.time = mytime
+
+	ru = RU("Barrois" ,"http://www.crous-lille.fr/admin-site/restauration_menu_print_w.php?ru=26&midi=1&soir=1&nb_w=2")
+	ru.fetchInfo()
 

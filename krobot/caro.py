@@ -18,10 +18,7 @@ class Caro(object):
 	def run(self):
 		"""  
 		clac clac clac
-		"""
-
-		
-		
+		"""	
 		pass
 
 	def shutdown(self):
