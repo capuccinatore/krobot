@@ -1,5 +1,3 @@
-
-
 class DataBase(object):
 	"""
 	docstring for DataBase
