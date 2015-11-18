@@ -25,7 +25,7 @@ class RU(object):
 		super(RU, self).__init__()
 		self.name = name
 		self.url = url
-		self.boolOpen = 0
+		self.boolOpen = False
 		self.menu = []
 
 	def fetchInformation(self):
