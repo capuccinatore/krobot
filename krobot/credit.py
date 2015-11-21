@@ -17,7 +17,7 @@ class CreditFetcher(object):
 
 	def process(self):
 
-		capReader = captchaReader("Dico")
+		capReader = CaptchaReader("Dico")
 		filename = "cap/capt-test.png"
 		cap_str = capReader.read(filename)
 		#capfile.save("cap/00.png")
@@ -55,10 +55,10 @@ class captchaSymbolExtractor(object):
 		return numpy.array(pil_image)	
 
 
-class captchaReader(object):
-	"""docstring for captchaReader"""
+class CaptchaReader(object):
+	"""docstring for CaptchaReader"""
 	def __init__(self, folderDico):
-		super(captchaReader, self).__init__()
+		super(CaptchaReader, self).__init__()
 		self.folderDico = folderDico + "/"
 
 	def read(self, filename):
@@ -98,5 +98,5 @@ class captchaReader(object):
 		return numpy.array_equal(symb_np, im_dic/255)
 		
 
-#ce = CreditFetcher()
-#assert ce.process() == "7Ks6W"
+ce = CreditFetcher()
+print ce.process() #== "7Ks6W"
