@@ -33,16 +33,24 @@ class IRCKrobot(irc.bot.SingleServerIRCBot):
     """
     communication bot for krobot. It prints menus, and receives ru and time preferences from users.
     """
-    def __init__(self, channel, nickname, server, port=6697, ruList):
+    def __init__(self, channel, nickname, server, port, personList, ruList):
         """
         ruList: list of RU instances, with name and menus filled.
+        personList: list of persons present, initially empty
         """
         irc.bot.SingleServerIRCBot.__init__(self, [(server, port)], nickname, nickname)
         self.channel = channel
         self.ruList = ruList
         self.personList = []
 
-    def printMenus(self, c, e):
+    #def connect():
+    #    """
+    #    create chatroom
+    #    """
+    #    return 0 # not implemented yet
+
+    def printMenus(self):
+        c = self.connection
         c.notice(self.channel, "Hi everyone, today's menus are:")
         for ru in ruList:
             c.notice(self.channel, ru.name+": "+[item for item in ru.menu])
@@ -113,7 +121,7 @@ class IRCKrobot(irc.bot.SingleServerIRCBot):
         elif cmd[:2] == "RU":
             user = nick
             preferredRU = cmd[:3]
-            c.notice(nick, "I took note that "+nick+" prefers RU "+cmd[3:]+"today.")
+            c.notice(nick, "I took note that "+nick+" prefers RU "+cmd[3:]+" today.")
 
         elif cmd[:2] == "TS":
             user = nick
@@ -143,7 +151,7 @@ def main():
     channel = sys.argv[2]
     nickname = sys.argv[3]
 
-    bot = TestBot(channel, nickname, server, port)
+    bot = IRCKrobot(channel, nickname, server, port, [], [])
     bot.start()
     bot.printMenus()
 
