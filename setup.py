@@ -48,7 +48,7 @@ setup(
     author_email='test@gmail.com',
     description='A robot to replace our dear caroline',
     long_description=long_description,
-    packages=['sandman'],
+    packages=['krobot'],
     include_package_data=True,
     platforms='any',
     test_suite='sandman.test.test_sandman',
