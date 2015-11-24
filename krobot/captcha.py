@@ -8,32 +8,6 @@ LETTER_SIZE = 8
 LETTER_LEFT = 10
 LETTER_RIGHT = 16
 
-class captchaSymbolExtractor(object):
-	"""docstring for captchaSymbolExtractor"""
-	def __init__(self):
-		super(captchaSymbolExtractor, self).__init__()
-
-	def extractSymbol(self, filename):
-
-		# mat_pix is a numpy array
-		mat_pix = self.openImage(filename)
-
-		list_im = []
-		for i in range(5):
-			left  = LETTER_LEFT + i * (LETTER_SIZE + LETTER_SPACE)
-			right = LETTER_LEFT + (i + 1) * (LETTER_SIZE + LETTER_SPACE) - 1
-			symb = mat_pix[6:19, left:right]
-			list_im.append(symb)
-			im = Image.fromarray(symb*255)
-			im = im.convert('1')
-
-		return list_im
-
-	def openImage(self, filename):
-
-		pil_image = Image.open(filename)
-		return numpy.array(pil_image)	
-
 
 class CaptchaReader(object):
 	"""docstring for CaptchaReader"""
@@ -76,3 +50,31 @@ class CaptchaReader(object):
 		
 		#print symb_np
 		return numpy.array_equal(symb_np, im_dic/255)
+
+
+
+class captchaSymbolExtractor(object):
+	"""docstring for captchaSymbolExtractor"""
+	def __init__(self):
+		super(captchaSymbolExtractor, self).__init__()
+
+	def extractSymbol(self, filename):
+
+		# mat_pix is a numpy array
+		mat_pix = self.openImage(filename)
+
+		list_im = []
+		for i in range(5):
+			left  = LETTER_LEFT + i * (LETTER_SIZE + LETTER_SPACE)
+			right = LETTER_LEFT + (i + 1) * (LETTER_SIZE + LETTER_SPACE) - 1
+			symb = mat_pix[6:19, left:right]
+			list_im.append(symb)
+			im = Image.fromarray(symb*255)
+			im = im.convert('1')
+
+		return list_im
+
+	def openImage(self, filename):
+
+		pil_image = Image.open(filename)
+		return numpy.array(pil_image)	
