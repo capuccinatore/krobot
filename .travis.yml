@@ -6,6 +6,6 @@ install:
     - "pip install coverage"
     - "pip install coveralls"
 script: 
-    - "coverage run --source=krobot setup.py test"
+    - "coverage run --source=krobot test"
 after_success:
     coveralls
