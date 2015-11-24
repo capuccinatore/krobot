@@ -1,6 +1,4 @@
 numpy
 Pillow
-urllib
-urllib2
 cookielib
 beautifulsoup4
