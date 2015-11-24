@@ -1,0 +1,6 @@
+numpy
+PIL
+urllib
+urllib2
+cookielib
+beautifulsoup4
