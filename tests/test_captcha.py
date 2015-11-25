@@ -8,7 +8,7 @@ from captcha import CaptchaReader
 class TestcaptchaReader:
 
 	def test_read(self):
-		
+        
 		capReader = CaptchaReader(os.path.dirname(__file__) + "/../krobot/Dico")
 		captcha_str = capReader.read("tests/material/capt-test.png")
 
