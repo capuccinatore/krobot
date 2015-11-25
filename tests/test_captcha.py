@@ -10,6 +10,6 @@ class TestcaptchaReader:
 	def test_read(self):
 		
 		capReader = CaptchaReader("Dico")
-		captcha_str = capReader.read("test/material/capt-test.png")
+		captcha_str = capReader.read("tests/material/capt-test.png")
 
 		assert captcha_str == "7Ks6W"
