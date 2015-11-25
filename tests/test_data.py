@@ -1,7 +1,7 @@
 import pytest
 import sys
 import os
-sys.path.insert(0, os.path.dirname(__file__)+"/..")
+sys.path.insert(0, os.path.dirname(__file__)+"/../krobot")
 import data
 import datetime
 #import mock
