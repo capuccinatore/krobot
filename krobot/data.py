@@ -61,7 +61,7 @@ class RU(object):
 		a = targetting_string.find_all("font", {"class":"menu_ru_plat"})
 
 		self.menu = map(lambda item: unicode(item.string).encode('utf-8'), day.find_all("font", {"class":"menu_ru_plat"}))
-		print self.menu
+		#print self.menu
 		
 
 if __name__ == '__main__':
