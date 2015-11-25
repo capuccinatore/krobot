@@ -1,8 +1,11 @@
 import pytest
 import sys
 import os
-sys.path.insert(0, os.path.dirname(__file__)+"/..")
+sys.path.insert(0, os.path.dirname(__file__)+"/../krobot")
 import data
+import datetime
+#import mock
+import time
 
 #def test_RU():
 #    testUrlStr = "http://rbardenet.github.io/"
@@ -15,8 +18,10 @@ def test_RU_fetchInfo() :
 
 	filetest = "file://" + os.path.dirname(__file__)+"/material/test_data.html"
 	
-	ru = data.RU("Barrois" , filetest)
-	ru.fetchInfo()
+	#def mytime(): return 1447000000#1447400000.0
+	#time.time = mytime
+	#datetime.datetime.now = mock.Mock(return_value=datetime.datetime(2000, 11, 13))
 
-	assert len(ru.menu) == 4
-	assert ru.menu[1] == "Darne de saumon"
+	with pytest.raises(Exception) :   
+		ru = data.RU("Barrois" , filetest)
+		ru.fetchInfo()
