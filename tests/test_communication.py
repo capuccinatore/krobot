@@ -8,9 +8,10 @@ import datetime
 import time
 import communication
 
+# Rémi, you definetely need to make a test that tests something, and not just call functions :)
 def test_Communication():
     ruList = []
     personList = []
-    comm = communication.Communication(personList, ruList)
-    comm.startBot()
-    comm.printMenus()
+    #comm = communication.Communication(personList, ruList)
+    #comm.startBot()
+    #comm.printMenus()
