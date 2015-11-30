@@ -8,7 +8,6 @@ from bs4 import BeautifulSoup
 from cookielib import CookieJar
 
 website = "http://reservation.crous-lille.fr:82/index.php"
-my_card = "856328"
 
 class CreditFetcher(object):
 	"""docstring for CreditFetcher"""
@@ -33,14 +32,12 @@ class CreditFetcher(object):
 
 		cookie = response.headers.get('Set-Cookie')
 		phpsesid = self.find_between(cookie, 0, ';')
-		print phpsesid
 
 		# Second request, ask for a sesion id
 		req2 = urllib2.Request('http://reservation.crous-lille.fr:82/img.php')
 		req2.add_header('cookie', cookie)
 		f = opener.open(req2)
 		text_req = f.read()
-		print text_req
 
 		# third request, ask for a captcha
 		req3 = urllib2.Request('http://reservation.crous-lille.fr:82/' + text_req)
@@ -54,7 +51,6 @@ class CreditFetcher(object):
 		# third request, ask for a captcha
 		capReader = CaptchaReader("Dico")
 		captcha_str = capReader.read("out.png")
-		print captcha_str
 
 		# fourth request, send captcha and card
 		values = {'codecap' : captcha_str, 'codecl' : card_str}
@@ -62,13 +58,12 @@ class CreditFetcher(object):
 		req_4 = urllib2.Request('http://reservation.crous-lille.fr:82/recup.php', data)
 		rep = opener.open(req_4)#urllib2.urlopen(req_4)
 		info_results = rep.read()
-		print info_results
 
 		soup = BeautifulSoup(info_results, "html.parser")
 		solde = soup.find_all('strong')
 		money_left = self.find_between(str(solde[0]), 8, '<')
 
-		print "You have " + money_left + "on your account, watch out!"
+		return money_left
 	
 	def find_between(self, s, index_first, last ):
 		try:
@@ -77,9 +72,4 @@ class CreditFetcher(object):
 			return s[start:end]
 		except ValueError:
 			return ""
-
-
-if __name__ == '__main__':
-	ce = CreditFetcher()
-	ce.fetch_credit(my_card)
 

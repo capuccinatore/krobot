@@ -15,11 +15,6 @@ class Caro(object):
 		super(Caro, self).__init__()
 		self.medium = medium
 
-		#ru_barois 	= RU("Barrois"  , "http://www.crous-lille.fr/admin-site/restauration_menu_print_w.php?ru=26&midi=1&soir=1&nb_w=2")
-		#ru_parisel  = RU("Pariselle", "http://www.crous-lille.fr/admin-site/restauration_menu_print_w.php?ru=19&midi=1&soir=1&nb_w=2")
-		#ru_sully 	= RU("Sully"    , "http://www.crous-lille.fr/admin-site/restauration_menu_print_w.php?ru=25&midi=1&soir=1&nb_w=2")
-
-		#self.ruList = [ru_barois, ru_parisel, ru_sully]
 		self.ruList = []
 		self.usersList = []
 
@@ -27,23 +22,26 @@ class Caro(object):
 		"""  
 		clac clac clac
 		"""	
-		# fetch credit stuff
+		#while True
+
+		self.extract_data()
+			# fetch credit stuff
 		self.fetch_credit()
 
-		# fetch ru menu stuff
+			# fetch ru menu stuff
 		self.food_stuff()
 
-		# Start talking with everybody
-			# Todo
+			# Start talking with everybody
+				# Todo
 
-		# at time t : solve
-			# Todo
+			# at time t : solve
+				# Todo
 
-		# Send result to everybody
-			# Todo
+			# Send result to everybody
+				# Todo
 
-		#TODO : pause until demain
-		pause.until(datetime(2015, 8, 12, 2))
+			#TODO : pause until demain
+		#	pause.until(datetime(2015, 8, 12, 2))
 
 	def extract_data(self):
 
@@ -88,17 +86,15 @@ class Caro(object):
 		credFetch = CreditFetcher()
 
 		for user in self.usersList:
-			id_card = user.id
-			credit = credFetch.fetch_credit(id_card)
-
-			print credit
+			credit = credFetch.fetch_credit(user.cardId)
+			print "{0} has {1} euros remaining on his card".format(user.name, credit)
 
 
 	def food_stuff(self):
 		for ru in self.ruList :
 			ru.fetchInfo()
 
-		comm = Communication("some medium", self.ruList)
+		#comm = Communication("some medium", self.ruList)
 
 	def shutdown(self):
 		""" 
@@ -112,5 +108,7 @@ class ParseException(Exception):
         # Set some exception infomation
         self.msg = arg
 
-c = Caro('skype')
-c.extract_data()
+if __name__ == '__main__':
+
+	c = Caro('skype')
+	c.run()
