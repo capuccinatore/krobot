@@ -1,0 +1,15 @@
+<rus>
+	<adress>http://www.crous-lille.fr/admin-site/restauration_menu_print_w.php?ru={0}</adress>
+	<ru>
+		<name>Barrois</name>
+		<id>26</id>
+	</ru>
+	<ru>
+		<name>Parisel</name>
+		<id>19</id>
+	</ru>
+	<ru>
+		<name>Sully</name>
+		<id>25</id>
+	</ru>
+</rus>

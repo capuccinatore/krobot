@@ -14,7 +14,7 @@ import time
 #    ru.fetchInformation()
 #    assert ru.html[:3] == "<!D" 
 
-def test_RU_fetchInfo() :
+def test_RU_date_does_not_correspond() :
 
 	filetest = "file://" + os.path.dirname(__file__)+"/material/test_data.html"
 	
@@ -25,3 +25,13 @@ def test_RU_fetchInfo() :
 	with pytest.raises(Exception) :   
 		ru = data.RU("Barrois" , filetest)
 		ru.fetchInfo()
+
+def test_RU_fetchInfo() :
+	#def mytime(): return 1447000000#1447400000.0
+	#time.time = mytime
+	#datetime.datetime.now = mock.Mock(return_value=datetime.datetime(2000, 11, 13))
+
+	#with pytest.raises(Exception) :   
+	#	ru = data.RU("Barrois" , filetest)
+	#	ru.fetchInfo()
+	pass
