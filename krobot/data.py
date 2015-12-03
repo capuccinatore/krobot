@@ -15,6 +15,7 @@ class Person(object):
         self.name = name
         self.mail 	= None
         self.cardId = None
+        self.creditLeft = None
 
         self.preferredRu = []
         self.timeSlot = [] # a list of 2 ints within which the person wants to eat, e.g. [1230,1345]

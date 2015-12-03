@@ -1,22 +1,27 @@
 #import pause
-from datetime import datetime
+import sys
+import pause
+
+import datetime
 import xml.etree.ElementTree
 
 from data import RU, Person
 from credit import CreditFetcher
 from communication import Communication
+from mail import MailAgent
 
 class Caro(object):
 	"""
 	main caro class
 	"""
 
-	def __init__(self, medium):
+	def __init__(self, medium, mailAgent):
 		super(Caro, self).__init__()
 		self.medium = medium
 
 		self.ruList = []
 		self.usersList = []
+		self.mailAgent = mailAgent
 
 	def run(self):
 		"""  
@@ -24,12 +29,12 @@ class Caro(object):
 		"""	
 		#while True
 
-		self.extract_data()
+		#self.extract_data()
 			# fetch credit stuff
-		self.fetch_credit()
+		#self.fetch_credit()
 
 			# fetch ru menu stuff
-		self.food_stuff()
+		#self.food_stuff()
 
 			# Start talking with everybody
 				# Todo
@@ -41,7 +46,8 @@ class Caro(object):
 				# Todo
 
 			#TODO : pause until demain
-		#	pause.until(datetime(2015, 8, 12, 2))
+		now =  datetime.date.today()
+		pause.until(datetime.datetime(now.year, now.month, now.day+1, 10, 30))
 
 	def extract_data(self):
 
@@ -58,7 +64,7 @@ class Caro(object):
 
 		except Exception as e:
 			print e
-			raise ParseException('error while parsing ru.xml')
+			raise ParseXmlException('error while parsing ru.xml')
 
 		# User stuff
 		try:
@@ -78,7 +84,7 @@ class Caro(object):
 
 		except Exception as e:
 			print e
-			raise ParseException('error while parsing users.xml')
+			raise ParseXmlException('error while parsing users.xml')
 
 
 	def fetch_credit(self):
@@ -87,7 +93,9 @@ class Caro(object):
 
 		for user in self.usersList:
 			credit = credFetch.fetch_credit(user.cardId)
-			print "{0} has {1} euros remaining on his card".format(user.name, credit)
+			user.creditLeft = credit;
+			text = "Hi {0}!,\n You have {1} euros left on your card".format(user.name, credit)
+			self.mailAgent.send(user.mail, 'CROUS', text)
 
 
 	def food_stuff(self):
@@ -103,12 +111,19 @@ class Caro(object):
 		pass
 
 
-class ParseException(Exception):
+class ParseXmlException(Exception):
     def __init__(self, arg):
         # Set some exception infomation
         self.msg = arg
 
 if __name__ == '__main__':
 
-	c = Caro('skype')
+	assert(len(sys.argv) == 5)
+	mail = sys.argv[1]
+	smtp = sys.argv[2]
+	pseudo = sys.argv[3]
+	mdp = sys.argv[4]
+	mailAgent = MailAgent(mail, smtp, pseudo, mdp)
+
+	c = Caro('skype', mailAgent)
 	c.run()
