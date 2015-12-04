@@ -7,7 +7,6 @@ import xml.etree.ElementTree
 
 from data import RU, Person
 from credit import CreditFetcher
-from communication import Communication
 from mail import MailAgent
 
 class Caro(object):
@@ -27,14 +26,15 @@ class Caro(object):
 		"""  
 		clac clac clac
 		"""	
-		#while True
+		while True:
 
-		#self.extract_data()
+			self.extract_data()
+			
 			# fetch credit stuff
-		#self.fetch_credit()
+			self.fetch_credit()
 
 			# fetch ru menu stuff
-		#self.food_stuff()
+			#self.food_stuff()
 
 			# Start talking with everybody
 				# Todo
@@ -46,8 +46,8 @@ class Caro(object):
 				# Todo
 
 			#TODO : pause until demain
-		now =  datetime.date.today()
-		pause.until(datetime.datetime(now.year, now.month, now.day+1, 10, 30))
+			now =  datetime.date.today()
+			pause.until(datetime.datetime(now.year, now.month, now.day+1, 10, 30))
 
 	def extract_data(self):
 
@@ -118,11 +118,17 @@ class ParseXmlException(Exception):
 
 if __name__ == '__main__':
 
-	assert(len(sys.argv) == 5)
-	mail = sys.argv[1]
-	smtp = sys.argv[2]
-	pseudo = sys.argv[3]
-	mdp = sys.argv[4]
+	if sys.argv[0] == "python":
+		offset = 1
+	elif sys.argv[0].startswith("caro.py"):
+		offset = 0
+	else:
+		sys.exit("")
+
+	mail = sys.argv[1 + offset]
+	smtp = sys.argv[2 + offset]
+	pseudo = sys.argv[3 + offset]
+	mdp = sys.argv[4 + offset]
 	mailAgent = MailAgent(mail, smtp, pseudo, mdp)
 
 	c = Caro('skype', mailAgent)
