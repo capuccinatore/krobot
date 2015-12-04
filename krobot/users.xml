@@ -1,0 +1,10 @@
+<users>
+	<user>
+		<name>John Doo</name>
+		<cardId>000000</cardId>
+		<mail>john.doo@awesome-university.eu</mail>
+		<preference>
+			<mail>True</mail>
+		</preference>
+	</user>
+</users>

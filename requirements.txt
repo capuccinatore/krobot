@@ -2,3 +2,4 @@ numpy
 Pillow
 beautifulsoup4
 irc
+pause

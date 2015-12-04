@@ -13,6 +13,10 @@ class Person(object):
     def __init__(self, name):
         super(Person, self).__init__()
         self.name = name
+        self.mail 	= None
+        self.cardId = None
+        self.creditLeft = None
+
         self.preferredRu = []
         self.timeSlot = [] # a list of 2 ints within which the person wants to eat, e.g. [1230,1345]
 
